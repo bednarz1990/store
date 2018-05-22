@@ -303,9 +303,9 @@ if (isset($_POST["Common"])) {
 								}
 							  
 							echo   
-								'<input type="hidden" name="return" value="http://localhost:8012/store/payment_success.php"/>
-					                <input type="hidden" name="notify_url" value="http://localhost:8012/store/payment_success.php">
-									<input type="hidden" name="cancel_return" value="http://localhost:8012/store/cancel.php"/>
+								'<input type="hidden" name="return" value="http://localhost:8080/store/payment_success.php"/>
+					                <input type="hidden" name="notify_url" value="http://localhost:8080/store/payment_success.php">
+									<input type="hidden" name="cancel_return" value="http://localhost:8080/store/cancel.php"/>
 									<input type="hidden" name="currency_code" value="USD"/>
 									<input type="hidden" name="custom" value="'.$_SESSION["uid"].'"/>
 									<input style="float:right;margin-right:80px;" type="image" name="submit"
