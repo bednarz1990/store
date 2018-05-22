@@ -9,7 +9,7 @@ if(!isset($_SESSION["uid"])){
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Arleta Skelp</title>
+		<title>Arleta Sklep</title>
 		<link rel="stylesheet" href="css/bootstrap.min.css"/>
 		<script src="js/jquery2.js"></script>
 		<script src="js/bootstrap.min.js"></script>
@@ -26,7 +26,7 @@ if(!isset($_SESSION["uid"])){
 			</div>
 			<ul class="nav navbar-nav">
 				<li><a href="index.php"><span class="glyphicon glyphicon-home"></span>Home</a></li>
-				<li><a href="index.php"><span class="glyphicon glyphicon-modal-window"></span>Product</a></li>
+				<li><a href="index.php"><span class="glyphicon glyphicon-modal-window"></span>Ubrania</a></li>
 			</ul>
 		</div>
 	</div>
@@ -57,10 +57,10 @@ if(!isset($_SESSION["uid"])){
 											</div>
 											<div class="col-md-6">
 												<table>
-													<tr><td>Product Name</td><td><b><?php echo $row["product_title"]; ?></b> </td></tr>
-													<tr><td>Product Price</td><td><b><?php echo "$ ".$row["product_price"]; ?></b></td></tr>
-													<tr><td>Quantity</td><td><b><?php echo $row["qty"]; ?></b></td></tr>
-													<tr><td>Transaction Id</td><td><b><?php echo $row["trx_id"]; ?></b></td></tr>
+													<tr><td>Nazwa produktu</td><td><b><?php echo $row["product_title"]; ?></b> </td></tr>
+													<tr><td>Cena produktu</td><td><b><?php echo "$ ".$row["product_price"]; ?></b></td></tr>
+													<tr><td>Ilość</td><td><b><?php echo $row["qty"]; ?></b></td></tr>
+													<tr><td>Numer transakcji</td><td><b><?php echo $row["trx_id"]; ?></b></td></tr>
 												</table>
 											</div>
 										</div>
