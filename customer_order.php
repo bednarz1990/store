@@ -46,6 +46,7 @@ if(!isset($_SESSION["uid"])){
 						<?php
 							include_once("db.php");
 							$user_id = $_SESSION["uid"];
+							//pobrania listy zamowien
 							$orders_list = "SELECT o.order_id,o.user_id,o.product_id,o.qty,o.trx_id,o.p_status,p.product_title,p.product_price,p.product_image FROM orders o,products p WHERE o.user_id='$user_id' AND o.product_id=p.product_id";
 							$query = mysqli_query($con,$orders_list);
 							if (mysqli_num_rows($query) > 0) {

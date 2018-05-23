@@ -1,4 +1,8 @@
+
+
 <?php
+
+
 session_start();
 $ip_add = getenv("REMOTE_ADDR");
 include "db.php";
@@ -78,7 +82,9 @@ if(isset($_POST["getProduct"])){
 									<button pid='$pro_id' style='float:right;' id='product' class='btn btn-danger btn-xs'>Dodaj do koszyka</button>
 								</div>
 							</div>
-						</div>	
+						
+						</div>
+					
 			";
 		}
 	}
@@ -114,6 +120,7 @@ if(isset($_POST["get_seleted_Category"]) || isset($_POST["selectBrand"]) || isse
 									<button pid='$pro_id' style='float:right;' id='product' class='btn btn-danger btn-xs'>Dodaj do koszyka</button>
 								</div>
 							</div>
+				 
 						</div>	
 			";
 		}
@@ -140,7 +147,7 @@ if(isset($_POST["get_seleted_Category"]) || isset($_POST["selectBrand"]) || isse
 						<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
 						<b>Produkt jest już dodany. Wybierz inny produkt.</b>
 				</div>
-			";//not in video
+			"; 
 		} else {
 			$sql = "INSERT INTO `cart`
 			(`p_id`, `ip_add`, `user_id`, `qty`) 
@@ -185,13 +192,13 @@ if(isset($_POST["get_seleted_Category"]) || isset($_POST["selectBrand"]) || isse
 		
 	}
 
-//Count User cart item
+// liczba rzeczy uzytkownika
 if (isset($_POST["count_item"])) {
-	//When user is logged in then we will count number of item in cart by using user session id
-	if (isset($_SESSION["uid"])) {
+	//kiedy user zalogowany jest wtedy liczymy liczbe zakupow uzywajac sessionid
+ 	if (isset($_SESSION["uid"])) {
 		$sql = "SELECT COUNT(*) AS count_item FROM cart WHERE user_id = $_SESSION[uid]";
 	}else{
-		//When user is not logged in then we will count number of item in cart by using users unique ip address
+	    //liczenie przez IP
 		$sql = "SELECT COUNT(*) AS count_item FROM cart WHERE ip_add = '$ip_add' AND user_id < 0";
 	}
 	
@@ -200,22 +207,22 @@ if (isset($_POST["count_item"])) {
 	echo $row["count_item"];
 	exit();
 }
-//Count User cart item
+ 
 
-//Get Cart Item From Database to Dropdown menu
+//pobrania z bazy
 if (isset($_POST["Common"])) {
 
 	if (isset($_SESSION["uid"])) {
-		//When user is logged in this query will execute
-		$sql = "SELECT a.product_id,a.product_title,a.product_price,a.product_image,b.id,b.qty FROM products a,cart b WHERE a.product_id=b.p_id AND b.user_id='$_SESSION[uid]'";
+		//query do bazy gdy zalogowany
+ 		$sql = "SELECT a.product_id,a.product_title,a.product_price,a.product_image,b.id,b.qty FROM products a,cart b WHERE a.product_id=b.p_id AND b.user_id='$_SESSION[uid]'";
 	}else{
-		//When user is not logged in this query will execute
+	 //kiedy niezalogowany query
 		$sql = "SELECT a.product_id,a.product_title,a.product_price,a.product_image,b.id,b.qty FROM products a,cart b WHERE a.product_id=b.p_id AND b.ip_add='$ip_add' AND b.user_id < 0";
 	}
 	$query = mysqli_query($con,$sql);
 	if (isset($_POST["getCartItem"])) {
-		//display cart item in dropdown menu
-		if (mysqli_num_rows($query) > 0) {
+		//wyswietlanie koszyka w dropdownmenu
+ 		if (mysqli_num_rows($query) > 0) {
 			$n=0;
 			while ($row=mysqli_fetch_array($query)) {
 				$n++;
@@ -242,8 +249,8 @@ if (isset($_POST["Common"])) {
 	}
 	if (isset($_POST["checkOutDetails"])) {
 		if (mysqli_num_rows($query) > 0) {
-			//display user cart item with "Ready to checkout" button if user is not login
-			echo "<form method='post' action='login_form.php'>";
+			//wyswietlanie koszyka z przyciskiem zakupu gdy user nie jest zalogowany
+ 			echo "<form method='post' action='login_form.php'>";
 				$n=0;
 				while ($row=mysqli_fetch_array($query)) {
 					$n++;
@@ -282,7 +289,7 @@ if (isset($_POST["Common"])) {
 							</form>';
 					
 				}else if(isset($_SESSION["uid"])){
-					//Paypal checkout form
+					//Paypal przycisk
 					echo '
 						</form>
 						<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
@@ -319,7 +326,7 @@ if (isset($_POST["Common"])) {
 	
 }
 
-//Remove Item From cart
+//usuwanie zakupow z koszyka
 if (isset($_POST["removeItemFromCart"])) {
 	$remove_id = $_POST["rid"];
 	if (isset($_SESSION["uid"])) {
@@ -337,7 +344,7 @@ if (isset($_POST["removeItemFromCart"])) {
 }
 
 
-//Update Item From cart
+//update koszyka
 if (isset($_POST["updateCartItem"])) {
 	$update_id = $_POST["update_id"];
 	$qty = $_POST["qty"];
@@ -358,7 +365,56 @@ if (isset($_POST["updateCartItem"])) {
 
 
 
+
 ?>
+
+
+<script>
+$(document).ready(function(){
+ 
+ $('#comment_form').on('submit', function(event){
+  event.preventDefault();
+  var form_data = $(this).serialize();
+  $.ajax({
+   url:"add_comment.php",
+   method:"POST",
+   data:form_data,
+   dataType:"JSON",
+   success:function(data)
+   {
+    if(data.error != '')
+    {
+     $('#comment_form')[0].reset();
+     $('#comment_message').html(data.error);
+     //$('#comment_id').val($pro_id);
+     load_comment();
+    }
+   }
+  })
+ });
+
+ load_comment();
+
+ function load_comment()
+ {
+  $.ajax({
+   url:"fetch_comment.php",
+   method:"POST",
+   success:function(data)
+   {
+    $('#display_comment').html(data);
+   }
+  })
+ }
+
+ $(document).on('click', '.reply', function(){
+  var comment_id = $(this).attr("id");
+  $('#comment_id').val(comment_id);
+  $('#comment_name').focus();
+ });
+ 
+});
+</script>
 
 
 

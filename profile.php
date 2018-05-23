@@ -22,7 +22,7 @@ if(!isset($_SESSION["uid"])){
 		</style>
 	</head>
 <body>
-	<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar navbar-default navbar-fixed-top">
 		<div class="container-fluid">	
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapse" aria-expanded="false">
@@ -54,12 +54,7 @@ if(!isset($_SESSION["uid"])){
 							</div>
 							<div class="panel-body">
 								<div id="cart_product">
-								<!--<div class="row">
-									<div class="col-md-3">Sl.No</div>
-									<div class="col-md-3">Product Image</div>
-									<div class="col-md-3">Product Name</div>
-									<div class="col-md-3">Price in $.</div>
-								</div>-->
+							 
 								</div>
 							</div>
 							<div class="panel-footer"></div>
@@ -91,22 +86,10 @@ if(!isset($_SESSION["uid"])){
 			<div class="col-md-2">
 				<div id="get_category">
 				</div>
-				<!--<div class="nav nav-pills nav-stacked">
-					<li class="active"><a href="#"><h4>Categories</h4></a></li>
-					<li><a href="#">Categories</a></li>
-					<li><a href="#">Categories</a></li>
-					<li><a href="#">Categories</a></li>
-					<li><a href="#">Categories</a></li>
-				</div> -->
+			 
 				<div id="get_brand">
 				</div>
-				<!--<div class="nav nav-pills nav-stacked">
-					<li class="active"><a href="#"><h4>Brand</h4></a></li>
-					<li><a href="#">Categories</a></li>
-					<li><a href="#">Categories</a></li>
-					<li><a href="#">Categories</a></li>
-					<li><a href="#">Categories</a></li>
-				</div> -->
+			 
 			</div>
 			<div class="col-md-8">	
 				<div class="row">
@@ -117,21 +100,10 @@ if(!isset($_SESSION["uid"])){
 					<div class="panel-heading">Produkty</div>
 					<div class="panel-body">
 						<div id="get_product">
-							<!--Here we get product jquery Ajax Request-->
-						</div>
-						<!--<div class="col-md-4">
-							<div class="panel panel-info">
-								<div class="panel-heading">Samsung Galaxy</div>
-								<div class="panel-body">
-									<img src="product_images/images.JPG"/>
-								</div>
-								<div class="panel-heading">$.500.00
-									<button style="float:right;" class="btn btn-danger btn-xs">AddToCart</button>
-								</div>
-							</div>
-						</div> -->
+ 						</div>
+				 
 					</div>
-					<div class="panel-footer">&copy; 2016</div>
+					<div class="panel-footer">&copy; 2018</div>
 				</div>
 			</div>
 			<div class="col-md-1"></div>

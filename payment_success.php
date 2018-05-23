@@ -1,13 +1,16 @@
 <?php
 
 session_start();
+if (function_exists('xdebug_disable')) {
+	xdebug_disable();
+  }
 if(!isset($_SESSION["uid"])){
 	header("location:index.php");
 }
 
 if (isset($_GET["st"])) {
 
-	# code...
+	// pobranie naglowkow z platnosci
 	$trx_id = $_GET["tx"];
 		$p_st = $_GET["st"];
 		$amt = $_GET["amt"];
@@ -22,7 +25,7 @@ if (isset($_GET["st"])) {
 		$sql = "SELECT p_id,qty FROM cart WHERE user_id = '$cm_user_id'";
 		$query = mysqli_query($con,$sql);
 		if (mysqli_num_rows($query) > 0) {
-			# code...
+		
 			while ($row=mysqli_fetch_array($query)) {
 			$product_id[] = $row["p_id"];
 			$qty[] = $row["qty"];
@@ -57,7 +60,7 @@ if (isset($_GET["st"])) {
 								</div>
 								<ul class="nav navbar-nav">
 									<li><a href="index.php"><span class="glyphicon glyphicon-home"></span>Home</a></li>
-									<li><a href="profile.php"><span class="glyphicon glyphicon-modal-window"></span>Product</a></li>
+									<li><a href="profile.php"><span class="glyphicon glyphicon-modal-window"></span>Ubrania</a></li>
 								</ul>
 							</div>
 						</div>
@@ -72,12 +75,11 @@ if (isset($_GET["st"])) {
 									<div class="panel panel-default">
 										<div class="panel-heading"></div>
 										<div class="panel-body">
-											<h1>Thankyou </h1>
+											<h1>Dziękuję</h1>
 											<hr/>
-											<p>Hello <?php echo "<b>".$_SESSION["name"]."</b>"; ?>,Your payment process is 
-											successfully completed and your Transaction id is <b><?php echo $trx_id; ?></b><br/>
-											you can continue your Shopping <br/></p>
-											<a href="index.php" class="btn btn-success btn-lg">Continue Shopping</a>
+											<p>Cześć <?php echo "<b>".$_SESSION["name"]."</b>"; ?>,Twoja płatność skończyła się sukcesem. Twój ID transakcji to <b><?php echo $trx_id; ?></b><br/>
+											Możesz kontynuować zakupy <br/></p>
+											<a href="index.php" class="btn btn-success btn-lg">Kontynuuj zakupy</a>
 										</div>
 										<div class="panel-footer"></div>
 									</div>

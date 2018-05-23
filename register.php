@@ -20,7 +20,7 @@ if(empty($f_name) || empty($l_name) || empty($email) || empty($password) || empt
 		
 		echo "
 			<div class='alert alert-warning'>
-				<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>PLease Fill all fields..!</b>
+				<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Wypełnij wszystkie pola!</b>
 			</div>
 		";
 		exit();
@@ -29,7 +29,7 @@ if(empty($f_name) || empty($l_name) || empty($email) || empty($password) || empt
 		echo "
 			<div class='alert alert-warning'>
 				<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-				<b>this $f_name nie poprawnę imię</b>
+				<b>$f_name to niepoprawnę imię</b>
 			</div>
 		";
 		exit();
@@ -38,7 +38,7 @@ if(empty($f_name) || empty($l_name) || empty($email) || empty($password) || empt
 		echo "
 			<div class='alert alert-warning'>
 				<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-				<b>this $l_name nie poprawne nazwisko</b>
+				<b>$l_name to niepoprawne nazwisko</b>
 			</div>
 		";
 		exit();
@@ -47,7 +47,7 @@ if(empty($f_name) || empty($l_name) || empty($email) || empty($password) || empt
 		echo "
 			<div class='alert alert-warning'>
 				<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-				<b>this $email niepoprawny email.</b>
+				<b>$email to niepoprawny email.</b>
 			</div>
 		";
 		exit();
@@ -96,7 +96,7 @@ if(empty($f_name) || empty($l_name) || empty($email) || empty($password) || empt
 		";
 		exit();
 	}
-	//existing email address in our database
+	//sprawdzenie maila na bazie czy istnieje
 	$sql = "SELECT user_id FROM user_info WHERE email = '$email' LIMIT 1" ;
 	$check_query = mysqli_query($con,$sql);
 	$count_email = mysqli_num_rows($check_query);

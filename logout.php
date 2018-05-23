@@ -1,5 +1,5 @@
 <?php
-
+//wylogowanie uzytkownika
 session_start();
 
 unset($_SESSION["uid"]);

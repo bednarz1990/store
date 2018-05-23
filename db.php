@@ -2,13 +2,13 @@
 
 $servername = "localhost";
 $username = "root";
-$password = "root1";
+$password = "";
 $db = "ecom";
 
-// Create connection
+// laczenie z baza
 $con = mysqli_connect($servername, $username, $password,$db);
 
-// Check connection
+// sprawdzeniene polaczenia
 if (!$con) {
     die("Connection failed: " . mysqli_connect_error());
 }

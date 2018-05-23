@@ -15,6 +15,7 @@ if (isset($_GET["register"])) {
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 <body>
+<!-- formularz rejestracji -->
 <div class="wait overlay">
 	<div class="loader"></div>
 </div>
@@ -36,7 +37,7 @@ if (isset($_GET["register"])) {
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8" id="signup_msg">
-				<!--Alert from signup form-->
+			 
 			</div>
 			<div class="col-md-2"></div>
 		</div>
