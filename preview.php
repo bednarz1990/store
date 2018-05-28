@@ -1,6 +1,9 @@
 <?php
 
-
+session_start();
+if(!isset($_SESSION["uid"])){
+	header("location:index.php");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,38 +44,57 @@
 	<p><br/></p>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-md-8" id="cart_msg">
-				<!--Cart Message--> 
-			</div>
-			<div class="col-md-2"></div>
-		</div>
-		<div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-md-8">
-				<div class="panel panel-primary">
-					<div class="panel-heading">Koszyk</div>
-					<div class="panel-body">
-						<div class="row">
-							<div class="col-md-2 col-xs-2"><b>Akcja</b></div>
-							<div class="col-md-2 col-xs-2"><b>Zdjęcie</b></div>
-							<div class="col-md-2 col-xs-2"><b>Nazwa</b></div>
-							<div class="col-md-2 col-xs-2"><b>Ilość</b></div>
-							<div class="col-md-2 col-xs-2"><b>Cena produktu</b></div>
-							<div class="col-md-2 col-xs-2"><b>Cena produktów</b></div>
+        <?php
+
+include_once("db.php");
+    $id_product =  $_GET['productId'];
+	$limit = 9;
+	if(isset($_POST["setPage"])){
+		$pageno = $_POST["pageNumber"];
+		$start = ($pageno * $limit) - $limit;
+	}else{
+		$start = 0;
+	}
+	$product_query = "SELECT * FROM products WHERE product_id = '$id_product'";
+	$run_query = mysqli_query($con,$product_query);
+	if(mysqli_num_rows($run_query) > 0){
+		while($row = mysqli_fetch_array($run_query)){
+			$pro_id    = $row['product_id'];
+			$pro_cat   = $row['product_cat'];
+			$pro_brand = $row['product_brand'];
+			$pro_title = $row['product_title'];
+			$pro_price = $row['product_price'];
+			$pro_image = $row['product_image'];
+            echo "
+              <div class='col-md-4'></div>
+				<div class='centerr-block col-md-4 text-center'>
+							<div class='panel panel-info'>
+								<div class='panel-heading'>$pro_title</div>
+								<div class='panel-body'>
+									  <img src='product_images/$pro_image' style='width:160px; height:250px;'/>
+								</div>
+							 
+								<div class='panel-footer'> 
+								 
+									<button pid='$pro_id'  ' id='preview' class='btn btn-primary btn-xs'>Dodaj komentarz</button>
+								</div>
+							</div>
+						
 						</div>
-						<div id="cart_checkout"></div>
-				 
-						</div> 
-					</div>
-					<div class="panel-footer"></div>
-				</div>
-			</div>
-			<div class="col-md-2"></div>
-			
+					
+			";
+		}
+	}
+
+?>
+		 
 		</div>
+      
+		 
 </body>	
 </html>
+
+
 
 
 

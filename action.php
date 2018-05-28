@@ -76,11 +76,13 @@ if(isset($_POST["getProduct"])){
 							<div class='panel panel-info'>
 								<div class='panel-heading'>$pro_title</div>
 								<div class='panel-body'>
-									<img src='product_images/$pro_image' style='width:160px; height:250px;'/>
+									<a href='preview.php?productId=$pro_id'> <img src='product_images/$pro_image' style='width:160px; height:250px;'/></a>
 								</div>
-								<div class='panel-heading'>$.$pro_price.00
+								<div class='panel-heading'>$pro_price.00 PLN
 									<button pid='$pro_id' style='float:right;' id='product' class='btn btn-danger btn-xs'>Dodaj do koszyka</button>
+								 
 								</div>
+							 
 							</div>
 						
 						</div>
@@ -114,11 +116,16 @@ if(isset($_POST["get_seleted_Category"]) || isset($_POST["selectBrand"]) || isse
 							<div class='panel panel-info'>
 								<div class='panel-heading'>$pro_title</div>
 								<div class='panel-body'>
-									<img src='product_images/$pro_image' style='width:160px; height:250px;'/>
+								<a href='preview.php?productId=$pro_id'> <img src='product_images/$pro_image' style='width:160px; height:250px;'/></a>
 								</div>
-								<div class='panel-heading'>$.$pro_price.00
+							<div class='panel-heading'>$pro_price.00 PLN
 									<button pid='$pro_id' style='float:right;' id='product' class='btn btn-danger btn-xs'>Dodaj do koszyka</button>
+								 
 								</div>
+							 
+							 
+							
+							</div>
 							</div>
 				 
 						</div>	
@@ -237,7 +244,7 @@ if (isset($_POST["Common"])) {
 						<div class="col-md-3">'.$n.'</div>
 						<div class="col-md-3"><img class="img-responsive" src="product_images/'.$product_image.'" /></div>
 						<div class="col-md-3">'.$product_title.'</div>
-						<div class="col-md-3">$'.$product_price.'</div>
+						<div class="col-md-3">'.$product_price.' PLN</div>
 					</div>';
 				
 			}
@@ -316,7 +323,7 @@ if (isset($_POST["Common"])) {
 									<input type="hidden" name="currency_code" value="USD"/>
 									<input type="hidden" name="custom" value="'.$_SESSION["uid"].'"/>
 									<input style="float:right;margin-right:80px;" type="image" name="submit"
-										src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/blue-rect-paypalcheckout-60px.png" alt="PayPal Checkout"
+										src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/blue-rect-paypalcheckout-60px.png" alt="PayPal"
 										alt="PayPal - The safer, easier way to pay online">
 								</form>';
 				}
@@ -337,7 +344,7 @@ if (isset($_POST["removeItemFromCart"])) {
 	if(mysqli_query($con,$sql)){
 		echo "<div class='alert alert-danger'>
 						<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-						<b>Product is removed from cart</b>
+						<b>Produkt został usunięty</b>
 				</div>";
 		exit();
 	}
@@ -356,7 +363,7 @@ if (isset($_POST["updateCartItem"])) {
 	if(mysqli_query($con,$sql)){
 		echo "<div class='alert alert-info'>
 						<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-						<b>Product is updated</b>
+						<b>Produkt został zaktualizowany</b>
 				</div>";
 		exit();
 	}
