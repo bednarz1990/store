@@ -73,11 +73,6 @@ include_once("db.php");
 								<div class='panel-body'>
 									  <img src='product_images/$pro_image' style='width:160px; height:250px;'/>
 								</div>
-							 
-								<div class='panel-footer'> 
-								 
-									<button pid='$pro_id'  ' id='preview' class='btn btn-primary btn-xs'>Dodaj komentarz</button>
-								</div>
 							</div>
 						
 						</div>
@@ -93,14 +88,14 @@ include_once("db.php");
 		 <div class="container">
    <form method="POST" id="comment_form">
     <div class="form-group">
-     <input type="text" name="comment_name" id="comment_name" class="form-control" placeholder="Enter Name" />
+     <input type="text" name="comment_name" id="comment_name" class="form-control" placeholder="Wprowadź imię" />
     </div>
     <div class="form-group">
-     <textarea name="comment_content" id="comment_content" class="form-control" placeholder="Enter Comment" rows="5"></textarea>
+     <textarea name="comment_content" id="comment_content" class="form-control" placeholder="Wprowadź komentarz" rows="5"></textarea>
     </div>
     <div class="form-group">
      <input type="hidden" name="comment_id" id="comment_id" value="0" />
-     <input type="submit" name="submit" id="submit" class="btn btn-info" value="Submit" />
+     <input type="submit" name="submit" id="submit" class="btn btn-info" value="Potwierdź" />
     </div>
    </form>
    <span id="comment_message"></span>
@@ -148,12 +143,9 @@ $(document).ready(function(){
   $.ajax({
    url:"fetch_comment.php",
    method:"POST",
-   dataType:"JSON",
    data: ({produktId: id}),
    success:function(data)
    {
-	console.log(data);
-
     $('#display_comment').html(data);
    }
   })

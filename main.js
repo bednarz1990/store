@@ -212,7 +212,7 @@ $(document).ready(function(){
 		$('.total').each(function(){
 			net_total += ($(this).val()-0);
 		})
-		$('.net_total').html("Total : $ " +net_total);
+		$('.net_total').html("Suma : " +net_total+ " PLN");
 
 	})
 	 
