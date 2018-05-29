@@ -117,7 +117,8 @@ $(document).ready(function(){
  
  $('#comment_form').on('submit', function(event){
   event.preventDefault();
-  var productId =   <?php echo json_encode($id_product ); ?>;
+   var form_data = $(this).serialize();
+   var productId =   <?php echo json_encode($id_product ); ?>;
   var form_data = $(this).serialize() + "&productId="+productId;
  
   console.log(form_data);
@@ -133,21 +134,26 @@ $(document).ready(function(){
      $('#comment_form')[0].reset();
      $('#comment_message').html(data.error);
 	 $('#comment_id').val('0');
-     load_comment();
+     load_comment(productId);
     }
    }
   })
  });
+ var produktId = <?php echo json_encode($id_product ); ?>;
+ load_comment(produktId);
 
- load_comment();
-
- function load_comment()
+ function load_comment(id)
  {
+	  
   $.ajax({
    url:"fetch_comment.php",
    method:"POST",
+   dataType:"JSON",
+   data: ({produktId: id}),
    success:function(data)
    {
+	console.log(data);
+
     $('#display_comment').html(data);
    }
   })

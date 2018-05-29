@@ -4,6 +4,18 @@
 
 $connect = new PDO('mysql:host=localhost;dbname=ecom', 'root', '');
 
+$product_id = '';
+$product_id = (int)$_POST["produktId"];
+if(empty($_POST["produktId"]))
+{
+$error .= '<p class="text-danger">Produkt jest niewłaściwy</p>';
+}
+else
+{
+$product_id = (int)$_POST["produktId"];
+
+}
+
 $query = "
 SELECT * FROM tbl_comment 
 WHERE parent_comment_id = '0' 
@@ -25,15 +37,15 @@ foreach($result as $row)
   <div class="panel-footer" align="right"><button type="button" class="btn btn-default reply" id="'.$row["comment_id"].'">Reply</button></div>
  </div>
  ';
- $output .= get_reply_comment($connect, $row["comment_id"]);
+ $output .= get_reply_comment($connect, $row["parent_comment_id"], 0, $product_id );
 }
 
 echo $output;
 
-function get_reply_comment($connect, $parent_id = 0, $marginleft = 0)
+function get_reply_comment($connect, $parent_id = 0, $marginleft = 0, $product_id = 0)
 {
  $query = "
- SELECT * FROM tbl_comment WHERE parent_comment_id = '".$parent_id."'
+ SELECT * FROM tbl_comment WHERE parent_comment_id = '".$parent_id."' AND product_id = '".$product_id."'
  ";
  $output = '';
  $statement = $connect->prepare($query);
@@ -64,5 +76,13 @@ function get_reply_comment($connect, $parent_id = 0, $marginleft = 0)
  }
  return $output;
 }
+
+function debug_to_console( $data ) {
+    if ( is_array( $data ) )
+     $output = "<script>console.log( 'Debug Objects: " . implode( ',', $data) . "' );</script>";
+     else
+     $output = "<script>console.log( 'Debug Objects: " . $data . "' );</script>";
+    echo $output;
+    }
 
 ?>

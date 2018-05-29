@@ -18,15 +18,14 @@ else
  $comment_name = $_POST["comment_name"];
 }
 
- if(empty($_POST["productId"]))
- {
- $error .= '<p class="text-danger">Produkt jest niewłaściwy</p>';
+if(empty($_POST["productId"]))
+{
+$error .= '<p class="text-danger">Produkt jest niewłaściwy</p>';
 }
- else
- {
- $product_id = (int)$_POST["productId"];
- } 
-
+else
+{
+$product_id = (int)$_POST["productId"];
+} 
 if(empty($_POST["comment_content"]))
 {
  $error .= '<p class="text-danger">Comment is required</p>';
