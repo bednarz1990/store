@@ -153,8 +153,9 @@ CREATE TABLE IF NOT EXISTS `tbl_comment` (
   `parent_comment_id` int(11) NOT NULL,
   `comment` varchar(200) NOT NULL,
   `comment_sender_name` varchar(40) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `product_id` int(100)
+  `product_id` int(100) NOT NULL, 
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+ 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
  
